@@ -1,0 +1,42 @@
+<script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
+  
+<table class="timeline-table" id="my-table">
+  <thead>
+    <tr>
+      <th v-for="key in Object.keys(rows[0])">{{ key }}</th>
+    </tr>
+  </thead>
+  <tbody v-for="row in rows">
+    <tr>
+      <td v-for="key in Object.keys(row)">{{ row[key] }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<script>
+new Vue({
+  el: '#my-table',
+  data: {
+  rows: [{
+    Head1: '1',
+    Head2: '2',
+    Head3: '3',
+    Head4: '4'
+  },
+  {
+    Head1: '11',
+    Head2: '22',
+    Head3: '33',
+    Head4: '44'
+  }]
+  }
+})
+</script>

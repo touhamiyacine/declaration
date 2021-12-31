@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
+<div id="body">
+<div id="app">
+  <table class="table">
+    <thead>
+      <tr>
+        <td><strong>Name</strong></td>
+        <td><strong>Job</strong></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in rows">
+        <select name="LeaveType" @change="onchange()" class="form-control" v-model="key">
+          <option value="1">Annual Leave/ Off-Day</option>
+          <option value="2">On Demand Leave</option>
+        </select>
+        <td><input type="text" v-model=""></td>
+        <td><input type="text" v-model="row.job"></td>
+        <td><a @click="removeRow(row)">Remove</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button class="button btn-primary" @click="addRow">Add row</button>
+  </div>
+  </div>
+</div>
+  <script>
+var app  = new Vue({
+  el: "#app",
+  data: {
+    rows: [
+      {name: "James Bond",job: "spy"},
+      {name: "Goldfinger", job: "villain"}
+    ]
+  },
+  methods:{
+    addRow: function(){
+      this.rows.push({name:"",job:""});
+    },
+    removeRow: function(row){
+      //console.log(row);
+      this.rows.$remove(row);
+    }
+  }
+});
+
+
+  </script>
