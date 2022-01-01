@@ -1,42 +1,46 @@
-<script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
   
-<table class="timeline-table" id="my-table">
-  <thead>
-    <tr>
-      <th v-for="key in Object.keys(rows[0])">{{ key }}</th>
-    </tr>
-  </thead>
-  <tbody v-for="row in rows">
-    <tr>
-      <td v-for="key in Object.keys(row)">{{ row[key] }}</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-
-
-
-
+<div id="app">
+  <table class="table">
+    <thead>
+      <tr>
+        <td><strong>Name</strong></td>
+        <td><strong>Job</strong></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in rows">
+        <td><input type="text" v-model="row.name"></td>
+        <td><input type="text" v-model="row.job"></td>
+        <td><a @click="removeRow(row)">Remove</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button class="button btn-primary" @click="addRow">Add row</button>
+  </div>
+  </div>
+  
+  
 
 <script>
-new Vue({
-  el: '#my-table',
+var app  = new Vue({
+  el: "#app",
   data: {
-  rows: [{
-    Head1: '1',
-    Head2: '2',
-    Head3: '3',
-    Head4: '4'
+    rows: [
+      {name: "James Bond",job: "spy"},
+      {name: "Goldfinger", job: "villain"}
+    ]
   },
-  {
-    Head1: '11',
-    Head2: '22',
-    Head3: '33',
-    Head4: '44'
-  }]
+  methods:{
+    addRow: function(){
+      this.rows.push({name:"",job:""});
+    },
+    removeRow: function(row){
+      //console.log(row);
+      this.rows.$remove(row);
+    }
   }
-})
+});
 </script>
