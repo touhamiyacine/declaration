@@ -1,46 +1,36 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
-  
+<script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+
 <div id="app">
-  <table class="table">
-    <thead>
-      <tr>
-        <td><strong>Name</strong></td>
-        <td><strong>Job</strong></td>
-        <td></td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="row in rows">
-        <td><input type="text" v-model="row.name"></td>
-        <td><input type="text" v-model="row.job"></td>
-        <td><a @click="removeRow(row)">Remove</a></td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
-    <button class="button btn-primary" @click="addRow">Add row</button>
-  </div>
-  </div>
+  <select >
+    <option v-for="i in m" :value="i.code" :key="i.id">
+      {{ i.nom }}
+    </option>
+  </select>
   
+</div>
   
 
 <script>
-var app  = new Vue({
+new Vue({
   el: "#app",
   data: {
-    rows: [
-      {name: "James Bond",job: "spy"},
-      {name: "Goldfinger", job: "villain"}
-    ]
+    m: ""
   },
-  methods:{
-    addRow: function(){
-      this.rows.push({name:"",job:""});
+  mounted (){
+      this.title = "Loading....";
+      var vm = this;
+      axios
+        .get("test2.php")
+        .then(function(response) {
+          vm.m = response.data;
+        })
+        .catch(function(error) {
+          alert(error);
+        });
     },
-    removeRow: function(row){
-      //console.log(row);
-      this.rows.$remove(row);
-    }
-  }
+    
+
 });
+
 </script>
