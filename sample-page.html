@@ -7,15 +7,26 @@
     <div class="container">
       <br>
       <div class="form-inline" action="#">
-      <input type="text" id="form-name" v-model="item.name" placeholder="Name" class="form-control"> 
-      <input type="text" v-model="item.desc" placeholder="Description" class="form-control" v-on:keyup.enter="addItem">
-      <select v-model="selected">
-        <option v-for="i in matiere" :value="i" :key="i.id">
-          {{ i.nom }}
-        </option>
-      </select>
+      
+    
+      <div class="form-group row">
+        
+        <div class="col-sm-10">
+          <select name ="select"  placeholder="matiére" v-model="item.desc" class="form-control" v-model="item.desc" class="form-control" v-on:keyup.enter="addItem">
+            <option v-for="i in m" :value="i.nom" :key="i.id">
+              {{ i.nom }}
+            </option>
+          </select>
      
-      <button @click="addItem" class="btn btn-dark"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="text" id="form-name" v-model="item.name" placeholder="quantité" class="form-control"> 
+      <div class="col-sm-3">
+     
+    </div>
+     &nbsp;&nbsp;&nbsp;
+      <button @click="addItem" class="btn btn-dark"><i class="fas fa-plus">ajouter</button>
         </div>
         </td>
       <br><br>
@@ -45,25 +56,26 @@
   
 new Vue({
   el: '#app',
-  data: function() {
-    return {
+  data: {
+    
       item: {name: "", desc: "", edit: false},
       items: [],
-      matiere :""
-    }
+    m:[],
+    
   },
   mounted (){
-      
+      this.title = "Loading....";
       var vm = this;
       axios
         .get("test2.php")
         .then(function(response) {
-          vm.matiere = response.data;
+          vm.m = response.data;
         })
         .catch(function(error) {
           alert(error);
         });
     },
+    
    
   
   methods:{
@@ -78,7 +90,26 @@ new Vue({
   }
 });
 
+new Vue({
+  el: "#app2",
+  data: {
+    m: ""
+  },
+  mounted (){
+      this.title = "Loading....";
+      var vm = this;
+      axios
+        .get("test2.php")
+        .then(function(response) {
+          vm.m = response.data;
+        })
+        .catch(function(error) {
+          alert(error);
+        });
+    },
+    
 
+});
      
 
   </script>
