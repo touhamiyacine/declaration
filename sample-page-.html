@@ -1,7 +1,7 @@
 <script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
 
-<div id="body">
+<div id="body" class="card">
   <div id="app">
    
     <div class="container">
@@ -9,32 +9,35 @@
       <div class="form-inline" action="#">
       
     
-      <div class="form-group row">
+     
         
-        <div class="col-sm-10">
-          <select name ="select"  placeholder="matiére" v-model="item.desc" class="form-control" v-model="item.desc" class="form-control" v-on:keyup.enter="addItem">
+        
+          <select  v-model="item.desc" class="form-control">
+            <option selected>Choose...</option>
             <option v-for="i in m" :value="i.nom" :key="i.id">
               {{ i.nom }}
             </option>
           </select>
-     
-        </div>
-    </div>
+          
+         
+       
+    
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <input type="text" id="form-name" v-model="item.name" placeholder="quantité" class="form-control"> 
+    <input type="text" id="form-name" v-model="item.name" placeholder="quantité" class="form-control"  v-on:keyup.enter="addItem"  > 
       <div class="col-sm-3">
-     
+        <button @click="addItem" class="btn btn-info"><i class="fas fa-plus">ajouter</button>
     </div>
-     &nbsp;&nbsp;&nbsp;
-      <button @click="addItem" class="btn btn-dark"><i class="fas fa-plus">ajouter</button>
-        </div>
+    
+     
+       
         </td>
       <br><br>
       <table class="table table-striped table-bordered table-sm">
         <thead class="thead-light">
           <th>Name</th>
           <th>Description</th>
-          <th class="col-2">Edit/Del</th>
+          <th>unité</th>
+          <th class="col-lg-12">Edit/Del</th>
         </thead>
         <tr v-for="(item, index) in items">
           <td>
@@ -45,8 +48,8 @@
             <input v-if="item.edit" type="text" v-model="item.desc" v-on:keyup.enter="item.edit = !item.edit">
             <span v-else>{{item.desc}} </span>
           </td>
-          <td><button @click="item.edit = !item.edit" class="btn btn-info"><i class="far fa-edit"></i></button>
-            <button @click="removeItem(index)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></td>
+          <td><button @click="item.edit = !item.edit" class="btn btn-info"><i class="far fa-edit">edit</i></button>
+            <button @click="removeItem(index)" class="btn btn-danger"><i class="far fa-trash-alt">delete</i></button></td>
         </tr>
       </table>
     </div>
@@ -90,26 +93,5 @@ new Vue({
   }
 });
 
-new Vue({
-  el: "#app2",
-  data: {
-    m: ""
-  },
-  mounted (){
-      this.title = "Loading....";
-      var vm = this;
-      axios
-        .get("test2.php")
-        .then(function(response) {
-          vm.m = response.data;
-        })
-        .catch(function(error) {
-          alert(error);
-        });
-    },
-    
-
-});
-     
 
   </script>
