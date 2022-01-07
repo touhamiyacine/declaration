@@ -31,6 +31,10 @@
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
       <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
   </head>
 
   <body>
@@ -244,9 +248,19 @@
                                     </a>
                                     <ul class="pcoded-submenu">  
                                         <li class=" ">
-                                            <a href="#"  onclick="go('produitformule.php');" >
+                                        <a href="javascript:void(0)"  onclick="go('addmatiere.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">NEW MATIERE</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                            <a href="javascript:void(0)"  onclick="go('produitformule.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">NEW FORMULE</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                            <a href="javascript:void(0)"  onclick="go('production.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">NEW PRODUCTION</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>

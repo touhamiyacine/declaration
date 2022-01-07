@@ -5,8 +5,8 @@
   <div id="app">
 <div id="table1"  class="card">
   <div class="card-header">
-      <h5>Nouveau Produit</h5>
-      <span>l'insertion d'une nouvelle formule</span>
+      <h5>production</h5>
+      <span>production</span>
       
   </div>
   <div class="card-block">
@@ -109,9 +109,10 @@
         this.title = "Loading....";
         var vm = this;
         axios
-          .get("test2.php")
+          .get("listeproduit.php")
           .then(function(response) {
             vm.m = response.data;
+            alert(m);
           })
           .catch(function(error) {
             alert(error);

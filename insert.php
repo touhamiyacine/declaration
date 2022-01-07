@@ -11,13 +11,6 @@
 
   $rqt->execute();
 
-  
-
-
-
-
-
-
   $matiere = json_decode($json->m);
   
   foreach ($matiere as $item)
