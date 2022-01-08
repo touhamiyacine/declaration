@@ -6,7 +6,7 @@
 <div id="table1"  class="card">
   <div class="card-header">
       <h5>Nouveau Produit</h5>
-      <span>l'insertion d'une nouvelle formule</span>
+      <span>Formule du produit</span>
       
   </div>
   <div class="card-block">
@@ -14,11 +14,15 @@
       <form>
         <div class="form-group row">
          
-          <div class="col-sm-3 form-control-success">
-              <input type="text" class="form-control success" value="" v-model="name"
-              placeholder="nom produit">
-             
-          </div>
+          <div class="col-sm-4 form-control-success">
+              <input type="text" class="form-control success" value="" v-model="nameproduit"
+              placeholder="Nom Produit">
+              </div>
+              <div class="col-sm-4 form-control-success">
+              <input type="text" class="form-control success" value="" v-model="nameformule"
+              placeholder="Nom Formule">
+              </div>
+         
           <button v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
       </div>
          
@@ -102,7 +106,8 @@
         item: {quantite: "", desc: "", edit: false},
         items: [],
       m:[],
-      name : "",
+      nameproduit : "",
+      nameformule : "",
       
     },
     mounted (){
@@ -136,8 +141,8 @@
 
             const formul = {
                    m : article,
-                   nom : this.name, 
-                   
+                   nameproduit : this.nameproduit, 
+                   nameformule : this.nameformule, 
 
             }
             alert(article);

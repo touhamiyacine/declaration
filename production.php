@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
 
 <div id="body">
@@ -31,14 +31,20 @@
           
           <div class="form-group row">
               <div class="col-sm-3">
-                <select  v-model="item.desc" class="form-control">
-                 
-                  <option v-for="i in m" :value="i.nom" :key="i.id">
-                    {{ i.nom }}
-                  </option>
-                </select>
+             
+<div id="app">
+  <select  v-model ="produit" v-on:change="changeItem">
+    <option>select item</option>
+    <option value="value1">value1</option>
+    <option value="value2">value2</option>
+  </select>
+  <p>{{selected}}</p>
+</div>
                 
               </div>
+             
+
+
               <div class="col-sm-3 form-control-success">
                   <input type="text"  class="form-control success" v-model="item.quantite"
                   placeholder="valeur">
@@ -101,8 +107,10 @@
       
         item: {quantite: "", desc: "", edit: false},
         items: [],
-      m:[],
+          m:[],
       name : "",
+      produit :"",
+      selected: "",
       
     },
     mounted (){
@@ -122,37 +130,17 @@
      
     
     methods:{
-      addItem(){
-        this.items.push({quantite:this.item.quantite, desc:this.item.desc, edit: false})
-        this.item = [];
-      //  $('#form-name').focus();
-      },
-      removeItem(index){
-        this.items.splice(index, 1);
-      },
-
-      insert(){
-            const article = JSON.stringify(this.items);
-            var i ="name";
-
-            const formul = {
-                   m : article,
-                   nom : this.name, 
-                   
-
-            }
-            alert(article);
-        axios.post('insert.php', formul).then(res => {
-          go('index.php');
-        
-              })
-              .catch(err => {
-                console.log(err)
-              })
-            
-          },
+     
+     
+          changeItem() { 
+      this.selected =  event.target.value;
+    }
 
     },
+   
+
+
+
   });
   function go(page) {
     $("#body").load(page);

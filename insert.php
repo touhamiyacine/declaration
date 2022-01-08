@@ -5,11 +5,17 @@
   $json = json_decode($responseBody);
   //return data
  
-  $produit = $json->nom;
+  $nomproduit = $json->nameproduit;
+  $nomformule = $json->nameformule;
 
-  $rqt=$bdd->prepare("INSERT INTO kasa.produit (`nom`) VALUES ('$produit')");
+
+  $rqt=$bdd->prepare("INSERT INTO kasa.produit (`nom`) VALUES ('$nomproduit')");
 
   $rqt->execute();
+  $rqt=$bdd->prepare("INSERT INTO kasa.formuleref (`nomformule`,`nomproduit`) 
+  VALUES ('$nomformule','$nomproduit')");
+$rqt->execute();
+$idformule = $bdd->lastInsertId();
 
   $matiere = json_decode($json->m);
   
@@ -18,10 +24,12 @@
  $matiere= $item->desc;
  $quantite = $item->quantite;
 
-$rqt=$bdd->prepare("INSERT INTO kasa.formule (`produit`,`matiere`,`quantite`) VALUES ('$produit','$matiere','$quantite')");
+$rqt=$bdd->prepare("INSERT INTO kasa.formule (`IDFORMULE`,
+`produit`,`matiere`,`quantite`) VALUES ('$idformule','$nomproduit','$matiere','$quantite')");
 
   $rqt->execute();
-
+echo "INSERT INTO kasa.formule (`IDFORMULE`,
+`produit`,`matiere`,`quantite`) VALUES ('$idformule','$nomproduit','$matiere','$quantite')";
 
 }
 
