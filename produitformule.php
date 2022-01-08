@@ -63,8 +63,8 @@
                 <tbody>
                   <tr v-for="(item, index) in items">
                     <td>
-                      <input v-if="item.edit" type="text" v-focus-on-create  v-model="item.desc"  v-on:keyup.enter="item.edit = !item.edit">
-                      <span v-else>{{item.desc}} </span>
+                      
+                      <span v-model="item.desc">{{item.desc}} </span>
                     </td>
                     <td>
                       <input v-if="item.edit" type="text" v-model="item.quantite" v-on:keyup.enter="item.edit = !item.edit">
