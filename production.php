@@ -17,7 +17,7 @@
           <div class="form-group row">
               <div class="col-sm-3">
               
-                <select  v-model ="produit" v-on:change="changeItem" class="form-control" >
+                <select  v-model ="produit" v-on:change="changeItem" class="form-control form-control" >
               <option v-for="i in m" :value="i.nom" :key="i.id">
               {{ i.nom }}
               </option>
@@ -26,7 +26,7 @@
                 
               </div>
               <div class="col-sm-3">
-                 <select v-model="item.desc"  v-on:change="changeItem2" class="form-control">
+                 <select v-model="item.desc"  v-on:change="changeItem2" class="form-control form-control">
              <option v-for="j in formule" :value="j.ID" :key="j.ID">
                     {{ j.nomformule }}
              </option>
@@ -35,18 +35,23 @@
               </div>
               <div class="col-sm-2 form-control-success">
          
-              <input type="text" v-on:keypress="NumbersOnly" class="form-control success"  
+              <input type="text" v-on:keypress="NumbersOnly" class="form-control"  v-model="qte"
               placeholder="quantité">
+             
+          </div>
+          <div class="col-sm-2 form-control-success">
+         
+          <button v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
              
           </div>
           </div>
          
       </form>
         
-      </form>
+      <form>
 
 
-      <h4 class="sub-title">Formule</h4>
+      
       
       <div class="card-block table-border-style">
         <div class="table-responsive">
@@ -54,7 +59,9 @@
                 <thead>
                     <tr>
                         <th>matiere</th>
-                        <th>quantité</th>
+                        <th>mesure</th>
+                        <th>Qte-stock</th>
+                        <th>Qte-Consommation</th>
                         </tr>
                 </thead>
                 <tbody>
@@ -65,9 +72,23 @@
                     </td>
                     <td>
                       
-                      <span>{{i.quantite}} </span>
+                      <span>{{i.quantite}} {{i.unite}} </span>
                     </td>
-                   
+                    <td   class="form-control-inverse">
+                      
+                      <span >{{i.stock}}  </span>
+                      
+                    </td>
+                    <td>
+                    <span  v-if="i.stock-(qte*i.quantite) > 0">
+                    <label class="label bg-success"> sufissant </label>       
+                    </span>
+                    <span v-else>
+                    <label class="label bg-danger"> Insufissant </label>
+                    </span>
+                     
+                      
+                    </td>
                   </tr>
                 </tbody>
             </table>
@@ -96,6 +117,7 @@
       formule :[],
       nomproduit:"",
       nomformule :"",
+      qte:"",
       
     },
     mounted (){
