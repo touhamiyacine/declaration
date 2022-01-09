@@ -62,6 +62,7 @@
                         <th>mesure</th>
                         <th>Qte-stock</th>
                         <th>Qte-Consommation</th>
+                        <th>S/I</th>
                         </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,14 @@
                       <span >{{i.stock}}  </span>
                       
                     </td>
+                    <td   class="form-control-inverse">
+                      
+                      <span >{{i.quantite*qte}}  </span>
+                      
+                    </td>
+
+
+
                     <td>
                     <span  v-if="i.stock-(qte*i.quantite) > 0">
                     <label class="label bg-success"> sufissant </label>       
