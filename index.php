@@ -263,6 +263,11 @@
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">NEW PRODUCTION</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
+                                            <a href="javascript:void(0)"  onclick="go('showproduction.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">PRODUCTION GLOBALE</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>

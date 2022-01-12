@@ -29,19 +29,20 @@
                  <select v-model="item.desc"  v-on:change="changeItem2" class="form-control form-control">
              <option v-for="j in formule" :value="j.ID" :key="j.ID">
                     {{ j.nomformule }}
+                  
              </option>
              </select>
                 
               </div>
               <div class="col-sm-2 form-control-success">
          
-              <input type="text" v-on:keypress="NumbersOnly" class="form-control"  v-model="qte"
+              <input type="text"    v-on:keypress="NumbersOnly" class="form-control"  v-model="qte"
               placeholder="quantité">
              
           </div>
           <div class="col-sm-2 form-control-success">
          
-          <button v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
+          <button   v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
              
           </div>
           </div>
@@ -55,7 +56,7 @@
       
       <div class="card-block table-border-style">
         <div class="table-responsive">
-            <table id="form-name" class="table">
+            <table   id="form-name" class="table">
                 <thead>
                     <tr>
                         <th>matiere</th>
@@ -89,11 +90,11 @@
 
 
                     <td>
-                    <span  v-if="i.stock-(qte*i.quantite) > 0">
-                    <label class="label bg-success"> sufissant </label>       
+                    <span  v-if="i.stock-(qte*i.quantite) > 0"> 
+                    <label class="label bg-success">  suffisant </label>       
                     </span>
                     <span v-else>
-                    <label class="label bg-danger"> Insufissant </label>
+                    <label class="label bg-danger"> insuffisant </label>
                     </span>
                      
                       
@@ -126,7 +127,9 @@
       formule :[],
       nomproduit:"",
       nomformule :"",
-      qte:"",
+      qte:0,
+      
+      
       
     },
     mounted (){
@@ -144,9 +147,26 @@
      
     
     methods:{
+
      
+      insert(){
+            const article = JSON.stringify(this.items);
+            const formul = {
+                   m : article,
+                   qte : this.qte,
+                   idformule :this.nomformule, }
+            alert(article);
+        axios.post('testprod.php', formul).then((response) => {
+   if(response.data==1) { alert("Qte matiere insufisante");} 
+}, (error) => {
+  console.log(error);
+});
+            
+          },
      
-      changeItem() {  var vm2 = this;
+      changeItem() { 
+       
+        var vm2 = this;
     var nomproduit =  event.target.value;
             const p =  {
       "nameproduct":nomproduit}     
@@ -159,6 +179,7 @@
                 });
           },
           changeItem2() {  var vm2 = this;
+            this.nomformule = event.target.value;
     var nomformule =  event.target.value;
             const p =  {
       "nameformule":nomformule}     
