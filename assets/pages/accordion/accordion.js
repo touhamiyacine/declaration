@@ -1,5 +1,6 @@
 "use strict";
 $(document).ready(function(){
+        $( function() {
 
             var icons = {
                 header: "zmdi zmdi-chevron-down",
@@ -21,7 +22,7 @@ $(document).ready(function(){
                 heightStyle: "content",
                 icons: icons
             });
-
+        } );
 
         if($(".accordion-msg").attr('aria-expanded') == 'true'){
             $(".accordion-msg").addClass("scale_active");

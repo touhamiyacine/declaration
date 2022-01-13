@@ -15,7 +15,7 @@
       <form >
           
           <div class="form-group row">
-              <div class="col-sm-3">
+              <div class="col-sm-2">
               
                 <select  v-model ="produit" v-on:change="changeItem" class="form-control form-control" >
               <option v-for="i in m" :value="i.nom" :key="i.id">
@@ -25,7 +25,7 @@
                  
                 
               </div>
-              <div class="col-sm-3">
+              <div class="col-sm-2">
                  <select v-model="item.desc"  v-on:change="changeItem2" class="form-control form-control">
              <option v-for="j in formule" :value="j.ID" :key="j.ID">
                     {{ j.nomformule }}
@@ -42,7 +42,12 @@
           </div>
           <div class="col-sm-2 form-control-success">
          
-          <button   v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
+          <button   v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider la prod</button>
+             
+          </div>
+          <div class="col-sm-2 form-control-success">
+         
+          <button   v-on:click.prevent="changerformule()" class="btn btn-out-dashed btn-success "> Changer formule </button>
              
           </div>
           </div>
@@ -137,7 +142,7 @@
         var vm = this;
         axios.get("listeproduit.php").then(function(response) {
             vm.m = response.data;
-          
+         
           })
           .catch(function(error) {
             alert(error);
@@ -147,7 +152,11 @@
      
     
     methods:{
-
+         
+changerformule()
+{
+  $("#body").load("produitformule-2.php");
+},
      
       insert(){
             const article = JSON.stringify(this.items);
@@ -155,7 +164,7 @@
                    m : article,
                    qte : this.qte,
                    idformule :this.nomformule, }
-            alert(article);
+        
         axios.post('testprod.php', formul).then((response) => {
    if(response.data==1) { alert("Qte matiere insufisante");} 
 }, (error) => {
