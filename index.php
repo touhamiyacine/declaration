@@ -319,7 +319,12 @@
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Stock Matiere</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                          
+                                            <a href="javascript:void(0)"  onclick="go('proforma.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">proforma</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+
                                             <a href="javascript:void(0)"  onclick="go('matiere.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Etat Global</span>
