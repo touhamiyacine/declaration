@@ -6,11 +6,11 @@
 <div id="table1"  class="card">
   
   <div class="card-block">
-      <h4 class="sub-title">Nouvelle  matiere</h4>
+      <h4 class="sub-title"> INPUT STOCK MATIERE</h4>
       <form>
         <div class="form-group row">
         
-        <label class="col-sm-1 col-form-label">Nom :</label>
+        <label class="col-sm-1 col-form-label">Matiere :</label>
        
           <div class="col-sm-2 form-control-success">
           <select  v-model="item.desc" class="form-control">
@@ -23,7 +23,7 @@
           </div>
           
           
-          <label class="col-sm-1 col-form-label">Qte:</label>
+          <label class="col-sm-1 col-form-label">Qte + :</label>
           <div class="col-sm-2 form-control-success">
          
               <input   type="text" v-on:keypress="NumbersOnly" class="form-control success"  v-model="item.quantite"
@@ -53,7 +53,7 @@
     el: '#app',
     data: {
       
-        item: {matiere: "", unite: "", quantite: "0"},
+        item: {desc: "", unite: "", quantite: "0"},
         items: [],
       m:[],
       name : "",
@@ -78,7 +78,7 @@
      
 
       insert(){
-        this.items.push({matiere:this.item.matiere, unite:this.item.unite, quantite:this.item.quantite})
+        this.items.push({desc:this.item.desc, unite:this.item.unite, quantite:this.item.quantite})
             const matiere = JSON.stringify(this.items);
            
             

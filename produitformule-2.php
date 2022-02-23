@@ -5,40 +5,50 @@
   <div id="app">
 <div id="table1"  class="card">
   <div class="card-header">
-      <h5>Nouveau Produit</h5>
-      <span>Formule du produit</span>
+      <h5>Nouvelle Formule</h5>
+     
       
   </div>
   <div class="card-block">
-      <h4 class="sub-title">Nom Produit</h4>
+      <h4 class="sub-title"> Produit</h4>
       <form>
         <div class="form-group row">
          
-          <div class="col-sm-4 form-control-success">
+          <div class="col-sm-3 form-control-success">
           <select  v-model ="nameproduit" v-on:change="changeItem" class="form-control form-control" >
               <option v-for="i in produit" :value="i.nom" :key="i.id">
               {{ i.nom }}
               </option>
               </select>  
               </div>
-              <div class="col-sm-4 form-control-success">
+              <div class="col-sm-3">
+                 <select v-model="item.matiere"  v-on:change="changeItem2" class="form-control form-control">
+                 <option value="" disabled>Select Formule</option>      
+                 <option v-for="j in formule" :value="j.ID" :key="j.ID">
+                    {{ j.nomformule }}
+                  
+             </option>
+             </select>
+                
+              </div>
+              <div class="col-sm-3 form-control-success">
               <input type="text" class="form-control success" value="" v-model="nameformule"
               placeholder="Nom Formule">
               </div>
          
-          <button v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider formule</button>
+          <button v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square">Ajouter formule</button>
       </div>
          
         
       </form>
 
 
-      <h4 class="sub-title">Formule</h4>
+      <h4 class="sub-title">Matiére</h4>
       <form >
           
           <div class="form-group row">
               <div class="col-sm-3">
-                <select  v-model="item.desc" class="form-control">
+                <select  v-model="item.matiere" class="form-control">
                  
                   <option v-for="i in m" :value="i.nom" :key="i.id">
                     {{ i.nom }}
@@ -71,7 +81,7 @@
                   <tr v-for="(item, index) in items">
                     <td>
                       
-                      <span v-model="item.desc">{{item.desc}} </span>
+                      <span v-model="item.matiere">{{item.matiere}} </span>
                     </td>
                     <td>
                       <input v-if="item.edit" type="text" v-model="item.quantite" v-on:keyup.enter="item.edit = !item.edit">
@@ -90,14 +100,7 @@
      
   </div>
 </div>
-<div class="card">
-  <div class="card-header">
-  <button v-on:click.prevent="insert()" class="btn btn-sm btn-outline-danger">insert</button>
-      <span>use class <code>table</code> inside table element</span>
-      <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li>        <li><i class="icofont icofont-error close-card"></i></li>    </ul></div>
-  </div>
-  
-</div>
+
 </div>
 </div>
 <script>
@@ -106,12 +109,13 @@
     el: '#app',
     data: {
       
-        item: {quantite: "", desc: "", edit: false},
+        item: {quantite: "", matiere: "", edit: false},
         items: [],
       m:[],
       nameproduit : "",
       nameformule : "",
       produit:[],
+      formule:[]
       
     },
     mounted (){
@@ -139,8 +143,38 @@
      
     
     methods:{
+      changeItem() { 
+       
+       var vm2 = this;
+   var nomproduit =  event.target.value;
+           const p =  {
+     "nameproduct":nomproduit}     
+           axios.post('listeformule.php',p).then(function(response) {
+                 vm2.formule = response.data;
+                 
+               })
+               .catch(function(error) {
+                 alert(error);
+               });
+         },
+      changeItem2() {  var vm3 = this;
+            this.nomformule = event.target.value;
+    var nomformule =  event.target.value;
+            const p =  {
+      "nameformule":nomformule}     
+            axios.post('listematiereformule.php',p).then(function(response) {
+                  vm3.items = response.data;
+                  
+                })
+                .catch(function(error) {
+                  alert(error);
+                });
+          },
+
+
+
       addItem(){
-        this.items.push({quantite:this.item.quantite, desc:this.item.desc, edit: false})
+        this.items.push({quantite:this.item.quantite, matiere:this.item.matiere, edit: false})
         this.item = [];
       //  $('#form-name').focus();
       },
@@ -160,7 +194,7 @@
             }
             alert(article);
         axios.post('insert2.php', formul).then(res => {
-          go('index.php');
+          go('production-groupe.php');
         
               })
               .catch(err => {

@@ -9,13 +9,16 @@ $datesys=date("Y-m-d H:i:s");
   $important = 0 ;
 
 $qte= $json->qte;
+$date= $json->date;
+$idgroupe= $json->groupeid;
+
 $idformule= $json->idformule;  
 
 $m= json_decode($json->m);
 foreach ($m as $item) { $stock= $item->stock;$quantite = $item->quantite; if ( $stock-($qte* $quantite) < 0 ) { $important = 1 ;  }}
 if($important== 0)
 { echo $important;
-    $rqt=$bdd->prepare("INSERT INTO kasa.production (`IDFORMULE`,`quantiteprod`,`dateprod`) VALUES ('$idformule','$qte','$datesys')");
+    $rqt=$bdd->prepare("INSERT INTO kasa.production (`IDFORMULE`,`quantiteprod`,`idgroupe`,`dateprod`) VALUES ('$idformule','$qte','$idgroupe','$date')");
     $rqt->execute();
     $idprod = $bdd->lastInsertId();
     foreach ($m as $item) { 

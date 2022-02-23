@@ -6,55 +6,75 @@
 <div id="table1"  class="card">
   <div class="card-header">
       <h5>production</h5>
-      <span>production</span>
+    
       
   </div>
   <div class="card-block">
-      <h4 class="sub-title">Nom Produit</h4>
+     
     
       <form >
           
           <div class="form-group row">
-              <div class="col-sm-2">
+          <div class="col-sm-3">
+              
+              <select  v-model ="groupeid" v-on:change="changeItem" class="form-control form-control" >
+              <option value="" disabled>Select Groupe</option>              
+              <option v-for="j in groupe" :value="j.id" :key="j.id">
+            {{ j.nom }}
+            </option>
+            </select>  
+               
+              
+            </div>
+              <div class="col-sm-3">
               
                 <select  v-model ="produit" v-on:change="changeItem" class="form-control form-control" >
-              <option v-for="i in m" :value="i.nom" :key="i.id">
+                <option value="" disabled>Select Produit</option>      
+                <option v-for="i in m" :value="i.nom" :key="i.id">
               {{ i.nom }}
               </option>
               </select>  
                  
                 
               </div>
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                  <select v-model="item.desc"  v-on:change="changeItem2" class="form-control form-control">
-             <option v-for="j in formule" :value="j.ID" :key="j.ID">
+                 <option value="" disabled>Select Formule</option>      
+                 <option v-for="j in formule" :value="j.ID" :key="j.ID">
                     {{ j.nomformule }}
                   
              </option>
              </select>
                 
               </div>
-              <div class="col-sm-2 form-control-success">
+              <div class="col-sm-3">
+              <div class="icon-btn">
+              <button v-on:click.prevent="go('formule.php')" class="btn btn-inverse btn-outline-inverse"><i class="icofont icofont-settings-alt"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+          
+              <div class="col-sm-3 form-control-success">
          
               <input type="text"    v-on:keypress="NumbersOnly" class="form-control"  v-model="qte"
               placeholder="quantité">
              
           </div>
-          <div class="col-sm-2 form-control-success">
-          <input class="form-control" type="date"  v-model="date" />
+          <div class="col-sm-3 form-control-success">
+          <input class="form-control" type="datetime-local"  v-model="date" />
           </div>
           <div class="col-sm-2 form-control-success">
          
-          <button   v-on:click.prevent="insert()" class="btn btn-out-dashed btn-inverse btn-square"> Valider la prod</button>
+          <button v-on:click.prevent="insert()"  class="btn  btn-outline  btn-inverse btn-square">Valider</button>
+          
+          </div>
+          <div class="col-sm-2 form-control-success">
+         
+          <!--button   v-on:click.prevent="changerformule()" class="btn btn-danger "> <i class="ti-settings"></i> </button-->
              
           </div>
-          <div class="col-sm-2 form-control-success">
-         
-          <button   v-on:click.prevent="changerformule()" class="btn btn-out-dashed btn-success "> Changer formule </button>
-             
           </div>
-          </div>
-         
       </form>
         
       <form>
@@ -71,7 +91,7 @@
                         <th>mesure</th>
                         <th>Qte-stock</th>
                         <th>Qte-Consommation</th>
-                        <th>S/I</th>
+                       
                         </tr>
                 </thead>
                 <tbody>
@@ -97,16 +117,7 @@
 
 
 
-                    <td>
-                    <span  v-if="i.stock-(qte*i.quantite) > 0"> 
-                    <label class="label bg-success">  suffisant </label>       
-                    </span>
-                    <span v-else>
-                    <label class="label bg-danger"> insuffisant </label>
-                    </span>
-                     
-                      
-                    </td>
+                    
                   </tr>
                 </tbody>
             </table>
@@ -129,8 +140,10 @@
         item: {matiere: "", quantite: ""},
         items: [],
           m:[],
+          groupe:[],
       name : "",
       produit :"",
+      groupeid :"",
       selected: "",
       formule :[],
       nomproduit:"",
@@ -147,11 +160,15 @@
         axios.get("listeproduit.php").then(function(response) {
             vm.m = response.data;
          
-          })
-          .catch(function(error) {
-            alert(error);
-          });
-      },
+          }).catch(function(error) { alert(error); });
+          var vm2 = this;
+          axios.get("listegroupe.php").then(function(response) {
+            vm2.groupe = response.data;
+         
+          }).catch(function(error) { alert(error); });
+        
+        
+        },
       
      
     
@@ -168,16 +185,20 @@ changerformule()
                    m : article,
                    qte : this.qte,
                    date : this.date,
-                   idformule :this.nomformule, }
+                   idformule :this.nomformule,
+                   groupeid :this.groupeid, }
         
-        axios.post('testprod.php', formul).then((response) => {
-   if(response.data==1) { alert("Qte matiere insufisante");} 
+        axios.post('addprod.php', formul).then((response) => {
+   if(response.data==1) { swal('','Qte matiere insufisante','warning');} 
+   swal('',	'Produiction effectué','success');
 }, (error) => {
   console.log(error);
 });
             
           },
-     
+           go(page) {
+    $("#body").load(page);
+},
       changeItem() { 
        
         var vm2 = this;
@@ -220,9 +241,7 @@ changerformule()
 
 
   });
-  function go(page) {
-    $("#body").load(page);
-}
+
 
 
   

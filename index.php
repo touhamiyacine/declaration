@@ -35,6 +35,8 @@
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
   </head>
 
   <body>
@@ -241,28 +243,28 @@
                                 
                                
                                 <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)">
+                                    <a>
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Production</span>
+                                        <span class="pcoded-mtext">Production</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">  
-                                        <li class=" ">
+                                        <li>
                                         
                                             
-                                            <a href="javascript:void(0)"  onclick="go('production.php');" >
+                                            <a  onclick="go('production-groupe.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Nouvelle production</span>
+                                                <span class="pcoded-mtext" >Nouvelle production</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                            <a href="javascript:void(0)"  onclick="go('produitformule-2.php');" >
+                                            <a  onclick="go('produitformule-2.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Nouvelle formule</span>
+                                                <span class="pcoded-mtext" >Nouvelle formule</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                            <a href="javascript:void(0)"  onclick="go('showproduction.php');" >
+                                            <a   onclick="go('showproduction.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">PRODUCTION GLOBALE</span>
+                                                <span class="pcoded-mtext" >PRODUCTION GLOBALE</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -308,29 +310,36 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">  
-                                        <li class=" ">
-                                        <a href="javascript:void(0)"  onclick="go('addmatiere.php');" >
+                                    <li class="">
+                                            <a href="javascript:void(0)" onclick="go('addmatiere.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Nouvelle Matiere</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <a href="javascript:void(0)"  onclick="go('stockmatiere.php');" >
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Stock Matiere</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <a href="javascript:void(0)"  onclick="go('proforma.php');" >
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">proforma</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-
-                                            <a href="javascript:void(0)"  onclick="go('matiere.php');" >
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Etat Global</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Nouvelle Matiere</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        
+                                        <li class="">
+                                            <a href="javascript:void(0)" onclick="go('stockmatiere.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Stock Matiere</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)" onclick="go('proforma.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">FACTURE PROFORMA</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)"  onclick="go('matiere.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Etat Global</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                       
                                     </ul>
                                 </li>
                              

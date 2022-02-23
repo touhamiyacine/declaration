@@ -55,7 +55,8 @@
               {{item.desc.prixHT}} 
                </div>
                <div class="col-sm-2 form-control" v-model="item.prix"  >
-              {{item.desc.prixHT*item.quantite}}
+             {{ item.desc.prixHT*item.quantite}}
+              
                </div>
            
               <div class="col-sm-2 form-control-success">
@@ -139,7 +140,7 @@
     console.log(this.items);
     return this.items.reduce(function(total, item){
 
-      return Number(total) + Number(item.prix); 
+      return   Number(total) + Number(item.prix).Tofixed(2); 
     },0);
   } },
     mounted (){
@@ -170,10 +171,13 @@
       addItem(){
         this.items.push({quantite:this.item.quantite, prixunite:this.item.desc.prixHT , prix:this.item.desc.prixHT*this.item.quantite
          , desc:this.item.desc.nomproduit, edit: false})
-      
-         vm.$forceUpdate();
-        this.item = [];
+         
         
+         this.item.quantite = " ";
+         this.item.prix = "";
+         this.item.prixunite = "";
+         this.item.desc="----";
+         vm.$forceUpdate();
       //  $('#form-name').focus();
       },
       removeItem(index){

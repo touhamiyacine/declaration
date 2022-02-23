@@ -10,8 +10,8 @@
 
 
  
-  $rqt=$bdd->prepare("INSERT INTO kasa.formuleref (`nomformule`,`nomproduit`) 
-  VALUES ('$nomformule','$nomproduit')");
+  $rqt=$bdd->prepare("INSERT INTO kasa.formuleref (`nomformule`,`nomproduit`,`etat`) 
+  VALUES ('$nomformule','$nomproduit',1)");
 $rqt->execute();
 $idformule = $bdd->lastInsertId();
 
@@ -19,15 +19,14 @@ $idformule = $bdd->lastInsertId();
   
   foreach ($matiere as $item)
 {   
- $matiere= $item->desc;
+ $matiere= $item->matiere;
  $quantite = $item->quantite;
 
 $rqt=$bdd->prepare("INSERT INTO kasa.formule (`IDFORMULE`,
 `produit`,`matiere`,`quantite`) VALUES ('$idformule','$nomproduit','$matiere','$quantite')");
 
   $rqt->execute();
-echo "INSERT INTO kasa.formule (`IDFORMULE`,
-`produit`,`matiere`,`quantite`) VALUES ('$idformule','$nomproduit','$matiere','$quantite')";
+
 
 }
 

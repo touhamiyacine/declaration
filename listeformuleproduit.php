@@ -3,16 +3,14 @@ $responseBody = file_get_contents('php://input');
   $json = json_decode($responseBody);
   //return data
 
-  $IDformule=$json->nameformule;
+  $nameproduct=$json->nameproduct;
 
 $rqt="";
 $row_res="";
 
 
 $bdd = new PDO('mysql:localhost;dbname=kasa', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$rqt=$bdd->prepare(" select  m.matiere as matiere , m.quantite as quantite 
- , p.unite as unite ,  p.quantite as stock
-from kasa.formule as m   , kasa.matierep as p where  m.matiere =p.nom and m.IDFORMULE ='$IDformule'");
+$rqt=$bdd->prepare("select m.ID , m.nomformule , m.nomproduit , IF( m.etat>0, true,false) AS etat from kasa.formuleref as m where  m.nomproduit ='$nameproduct'");
 $rqt->execute();
 $row_res=$rqt->fetchAll();
 
