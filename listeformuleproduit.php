@@ -1,4 +1,5 @@
 <?php
+require_once("conn.php");
 $responseBody = file_get_contents('php://input');
   $json = json_decode($responseBody);
   //return data
@@ -9,7 +10,7 @@ $rqt="";
 $row_res="";
 
 
-$bdd = new PDO('mysql:localhost;dbname=kasa', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
 $rqt=$bdd->prepare("select m.ID , m.nomformule , m.nomproduit , IF( m.etat>0, true,false) AS etat from kasa.formuleref as m where  m.nomproduit ='$nameproduct'");
 $rqt->execute();
 $row_res=$rqt->fetchAll();

@@ -1,5 +1,5 @@
 <?php 
-$bdd = new PDO('mysql:localhost;dbname=kasa', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+require_once("conn.php");
 $datesys=date("Y-m-d H:i:s");   
   
 

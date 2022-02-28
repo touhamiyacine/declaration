@@ -1,6 +1,5 @@
 <?php 
-  $bdd = new PDO('mysql:localhost;dbname=kasa', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
+  require_once("conn.php");
   $responseBody = file_get_contents('php://input');
   $json = json_decode($responseBody);
   //return data
