@@ -83,7 +83,7 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
-            <nav class="navbar header-navbar pcoded-header">
+            <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
                 <div class="navbar-wrapper">
 
                     <div class="navbar-logo">
@@ -94,7 +94,7 @@
                             <i class="ti-search"></i>
                         </a>
                         <a href="index.html">
-                          
+                          <img class="img-fuild" src="assets/images/logo.png" alt="logo">
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
@@ -280,13 +280,13 @@
                                         <li class=" ">
                                         <a href="javascript:void(0)"  onclick="go('produitformule.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Nouveau produit</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Nouveau produit</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                            
                                             <a href="javascript:void(0)"  onclick="go('produit.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">liste des produits</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">liste des produits</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                            
@@ -294,13 +294,6 @@
                                         </li>
                                     </ul>
                                 </li>                      
-
-
-
-
-
-
-
 
 
                                 <li class="pcoded-hasmenu">
@@ -328,7 +321,21 @@
                                         <li class="">
                                             <a href="javascript:void(0)" onclick="go('proforma.php');" >
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">FACTURE PROFORMA</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">NOUVELLE  PROFORMA</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)" onclick="go('showproforma.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">LISTE PROFORMA</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)" onclick="go('newclient.php');" >
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">New client</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -572,8 +579,19 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.1/dist/vuetify.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
-
-
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/css/bootstrap.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+    <!-- Menu-Search css -->
+    <link rel="stylesheet" type="text/css" href="assets/pages/menu-search/css/component.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
 <script>

@@ -1,5 +1,3 @@
-
-   
 <script src="https://unpkg.com/vue@2.5.9/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
 
@@ -16,57 +14,49 @@
       <form>
         <div class="form-group row">
          
-          <div class="col-sm-3 form-control-success">
+          <div class="col-sm-4 form-control-success">
           <select  class="form-control form-control" >
           <option value="">EXWORKS/rendu</option>
           <option value="EXWORKS">EXWORKS</option>
           <option value="rendu">rendu</option>
               </select>  
               </div>
-              <div class="col-sm-3 form-control-success">
+              <div class="col-sm-4 form-control-success">
           <select  class="form-control form-control" >
           <option value="">VT/DISTRUB</option>
           <option value="VT">VT</option>
           <option value="DISTRUB">DISTRUB</option>
               </select>  
               </div>
-              <div class="col-sm-3">
-                <select  v-model="idclient" class="form-control">
-                <option value="" disabled>Select Client</option> 
-                  <option v-for="i in client" :value="i" :key="i.id">
-                    {{ i.raison }}  
-                  </option>
-                </select>
-                
-              </div>
-
-
       </div>
          
         
       </form>
+
+
       <h4 class="sub-title">liste produit</h4>
       <form >
           
           <div class="form-group row">
               <div class="col-sm-4">
-                <select  v-model="item.desc" class="form-control">
-                <option value="" disabled>Select Produit</option> 
+                <select   class="form-control">
+                 
                   <option v-for="i in m" :value="i" :key="i.id">
-                    {{ i.nomproduit }}  {{ i.volume }}
+                    {{ i.nomproduit }}
                   </option>
                 </select>
                 
               </div>
               <div class="col-sm-2 form-control-success">
-              <input type="text" class="form-control success" value="" v-model="item.quantite"
+              <input type="text" class="form-control success" value=""
               placeholder="UNITE">
               </div>
-              <div class="col-sm-2 form-control" v-model="item.prixunite"  >
+              <div class="col-sm-2 form-control">
               {{item.desc.prixHT}} 
                </div>
-               <div class="col-sm-2 form-control" v-model="item.prix"  >
-              {{item.desc.prixHT*item.quantite}}
+               <div class="col-sm-2 form-control">
+             {{ item.desc.prixHT*item.quantite}}
+              
                </div>
            
               <div class="col-sm-2 form-control-success">
@@ -119,15 +109,7 @@
                     </tr>
   </div>
 </div>
-<div id="invoice" class="card">
-  <div class="card-header">
- 
-  <button v-on:click.prevent="insert()" class="btn btn-sm btn-outline-danger">insert</button>
-     
-      <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li>        <li><i class="icofont icofont-error close-card"></i></li>    </ul></div>
-  </div>
-  
-</div>
+
 </div>
 </div>
 <script>
@@ -136,32 +118,28 @@
     el: '#app',
     data: {
       
-        item: {quantite: "", desc: "", prixunite: "" , prix: "" , edit: false},
+        item: {desc: "", quantite: "",  prixunite: "" , prix: "" , edit: false},
         items: [],
       m:[],
       nameproduit : "",
       nameformule : "",
       produit:[],
-      client:[],
-      idclient:"",
       test:"",
-      test2:"",
-      totalp:0 ,
+      test2:""
+      
     },
     computed: {
   total: function(){
-    
+    console.log(this.items);
     return this.items.reduce(function(total, item){
-      this.totalp = Number(total) + Number(item.prix); 
-      return Number(total) + Number(item.prix); 
+
+      return   Number(total) + Number(item.prix).Tofixed(2); 
     },0);
   } },
     mounted (){
         this.title = "Loading....";
         var vm = this;
         var vm2 = this;
-        var vm3 = this;
-
         axios
           .get("produitproforma.php")
           .then(function(response) {
@@ -178,30 +156,20 @@
           .catch(function(error) {
             alert(error);
           });
-          axios
-          .get("listeclient.php")
-          .then(function(response2) {
-            vm3.client = response2.data;
-          })
-          .catch(function(error) {
-            alert(error);
-          });
       },
       
      
     
     methods:{
       addItem(){ 
-        this.items.push({quantite:this.item.quantite, prixunite:this.item.desc.prixHT , prix:this.item.desc.prixHT*this.item.quantite
-         , desc:this.item.desc.nomproduit, edit: false})
-       
+        alert(this.items);
+        this.items.push({quantite:this.item.quantite, prixunite:this.item.quantite ,
+         prix:this.item.quantite
+         , desc:this.item.quantite, edit: false})
+         
+         this.item = [];
         
-          this.item.quantite="";
-          this.item.desc="";
-          this.item.desc.prixHT="";
-          this.item.prix="";
-         vm.$forceUpdate();
-       
+         this.$forceUpdate();
         
       //  $('#form-name').focus();
       },
@@ -209,34 +177,36 @@
         this.items.splice(index, 1);
       },
       imprimer : function() {
-        let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
-        mywindow.document.write(document.getElementById("invoice").innerHTML);
-        mywindow.print();
+                window.print();
             },
       insert(){
-            const produit = JSON.stringify(this.items);
-            alert(produit);
+            const article = JSON.stringify(this.items);
             var i ="name";
+
             const formul = {
-                   m : produit,
-                   total : this.total, 
-                   client : this.idclient.id, 
+                   m : article,
+                   nameproduit : this.nameproduit, 
+                   nameformule : this.nameformule, 
+
             }
-           
-        axios.post('insertproforma.php', formul).then(res => {
-        
+            alert(article);
+        axios.post('insert2.php', formul).then(res => {
+          go('index.php');
         
               })
               .catch(err => {
                 console.log(err)
               })
-              go('showproforma.php');
+            
           },
+
     },
   });
   function go(page) {
     $("#body").load(page);
 }
+
+
   
     </script>
   

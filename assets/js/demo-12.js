@@ -7,8 +7,8 @@ $(document).ready(function () {
         SubMenuTrigger: 'click', // click / hover
         activeMenuClass: 'active',
         ThemeBackgroundPattern: 'pattern4',  // pattern1, pattern2, pattern3, pattern4, pattern5, pattern6
-        HeaderBackground: 'theme1',  // theme1, theme2, theme3, theme4, theme5  header color
-        LHeaderBackground: 'theme1', // theme1, theme2, theme3, theme4, theme5, theme6   brand color
+        HeaderBackground: 'theme6',  // theme1, theme2, theme3, theme4, theme5  header color
+        LHeaderBackground: 'theme6', // theme1, theme2, theme3, theme4, theme5, theme6   brand color
         NavbarBackground: 'themelight1', // themelight1, theme1  // light  and dark sidebar
         ActiveItemBackground: 'theme4', // theme1, theme2, theme3, theme4, theme5, theme6, theme7, theme8, theme9, theme10, theme11, theme12  mennu active item color
         SubItemBackground: 'theme2',

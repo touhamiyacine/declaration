@@ -65,9 +65,9 @@ $(document).ready(function () {
                 $('.navbar-logo').attr("logo-theme", "theme6");
             }
             if(layout=='light'){
-                $('.pcoded-header').attr("header-theme", "theme1");
-                $('.pcoded-navbar').attr("navbar-theme", "themelight1");
-                $('.navbar-logo').attr("logo-theme", "theme1");
+                $('.pcoded-header').attr("header-theme", "theme6");
+                $('.pcoded-navbar').attr("navbar-theme", "theme1");
+                $('.navbar-logo').attr("logo-theme", "theme6");
             }
         });
     };
